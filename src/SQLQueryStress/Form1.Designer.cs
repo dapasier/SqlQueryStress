@@ -98,8 +98,27 @@ namespace SQLQueryStress
             this.label11 = new System.Windows.Forms.Label();
             this.queryDelay_textBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ColumnI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnQuery = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnIterations = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnThreads = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDelay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCompleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnClientAvg = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnActualAvg = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCPUAvg = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnReadsAvg = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnExceptions = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.sqlControl1 = new SQLQueryStress.SqlControl();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.clearGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iterations_numericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.threads_numericUpDown)).BeginInit();
@@ -108,6 +127,10 @@ namespace SQLQueryStress
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.statusStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -128,7 +151,7 @@ namespace SQLQueryStress
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(733, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(913, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -535,7 +558,7 @@ namespace SQLQueryStress
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label11, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.queryDelay_textBox, 0, 10);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(326, 3);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(500, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 15;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
@@ -686,33 +709,204 @@ namespace SQLQueryStress
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel1, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.elementHost1, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 24);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(733, 410);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(907, 436);
             this.tableLayoutPanel3.TabIndex = 33;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel3, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.dataGridView1, 0, 1);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 24);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 69.49686F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.50315F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(913, 636);
+            this.tableLayoutPanel5.TabIndex = 34;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnI,
+            this.ColumnQuery,
+            this.ColumnIterations,
+            this.ColumnThreads,
+            this.ColumnDelay,
+            this.ColumnTime,
+            this.ColumnCompleted,
+            this.ColumnClientAvg,
+            this.ColumnActualAvg,
+            this.ColumnCPUAvg,
+            this.ColumnReadsAvg,
+            this.ColumnExceptions});
+            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 445);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(907, 188);
+            this.dataGridView1.TabIndex = 34;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 638);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(913, 22);
+            this.statusStrip1.TabIndex = 35;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(100, 23);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(100, 23);
+            // 
+            // ColumnI
+            // 
+            this.ColumnI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ColumnI.HeaderText = "i";
+            this.ColumnI.Name = "ColumnI";
+            this.ColumnI.ReadOnly = true;
+            this.ColumnI.Width = 34;
+            // 
+            // ColumnQuery
+            // 
+            this.ColumnQuery.HeaderText = "Query";
+            this.ColumnQuery.Name = "ColumnQuery";
+            this.ColumnQuery.ReadOnly = true;
+            // 
+            // ColumnIterations
+            // 
+            this.ColumnIterations.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ColumnIterations.HeaderText = "Iterations";
+            this.ColumnIterations.Name = "ColumnIterations";
+            this.ColumnIterations.ReadOnly = true;
+            this.ColumnIterations.Width = 75;
+            // 
+            // ColumnThreads
+            // 
+            this.ColumnThreads.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ColumnThreads.HeaderText = "Threads";
+            this.ColumnThreads.Name = "ColumnThreads";
+            this.ColumnThreads.ReadOnly = true;
+            this.ColumnThreads.Width = 71;
+            // 
+            // ColumnDelay
+            // 
+            this.ColumnDelay.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ColumnDelay.HeaderText = "Delay";
+            this.ColumnDelay.Name = "ColumnDelay";
+            this.ColumnDelay.ReadOnly = true;
+            this.ColumnDelay.Width = 59;
+            // 
+            // ColumnTime
+            // 
+            this.ColumnTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ColumnTime.HeaderText = "Time";
+            this.ColumnTime.Name = "ColumnTime";
+            this.ColumnTime.ReadOnly = true;
+            this.ColumnTime.Width = 55;
+            // 
+            // ColumnCompleted
+            // 
+            this.ColumnCompleted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ColumnCompleted.HeaderText = "Completed";
+            this.ColumnCompleted.Name = "ColumnCompleted";
+            this.ColumnCompleted.ReadOnly = true;
+            this.ColumnCompleted.Width = 82;
+            // 
+            // ColumnClientAvg
+            // 
+            this.ColumnClientAvg.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ColumnClientAvg.HeaderText = "ClientAvg";
+            this.ColumnClientAvg.Name = "ColumnClientAvg";
+            this.ColumnClientAvg.ReadOnly = true;
+            this.ColumnClientAvg.Width = 77;
+            // 
+            // ColumnActualAvg
+            // 
+            this.ColumnActualAvg.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ColumnActualAvg.HeaderText = "ActualAvg";
+            this.ColumnActualAvg.Name = "ColumnActualAvg";
+            this.ColumnActualAvg.ReadOnly = true;
+            this.ColumnActualAvg.Width = 81;
+            // 
+            // ColumnCPUAvg
+            // 
+            this.ColumnCPUAvg.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ColumnCPUAvg.HeaderText = "CPUAvg";
+            this.ColumnCPUAvg.Name = "ColumnCPUAvg";
+            this.ColumnCPUAvg.ReadOnly = true;
+            this.ColumnCPUAvg.Width = 73;
+            // 
+            // ColumnReadsAvg
+            // 
+            this.ColumnReadsAvg.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ColumnReadsAvg.HeaderText = "ReadsAvg";
+            this.ColumnReadsAvg.Name = "ColumnReadsAvg";
+            this.ColumnReadsAvg.ReadOnly = true;
+            this.ColumnReadsAvg.Width = 82;
+            // 
+            // ColumnExceptions
+            // 
+            this.ColumnExceptions.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ColumnExceptions.HeaderText = "Exceptions";
+            this.ColumnExceptions.Name = "ColumnExceptions";
+            this.ColumnExceptions.ReadOnly = true;
+            this.ColumnExceptions.Width = 84;
             // 
             // elementHost1
             // 
             this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.elementHost1.Location = new System.Drawing.Point(3, 3);
             this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(317, 404);
+            this.elementHost1.Size = new System.Drawing.Size(491, 430);
             this.elementHost1.TabIndex = 33;
             this.elementHost1.Text = "elementHost1";
             this.elementHost1.Child = this.sqlControl1;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearGridToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
+            // 
+            // clearGridToolStripMenuItem
+            // 
+            this.clearGridToolStripMenuItem.Name = "clearGridToolStripMenuItem";
+            this.clearGridToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clearGridToolStripMenuItem.Text = "Clear Grid";
+            this.clearGridToolStripMenuItem.Click += new System.EventHandler(this.clearGridToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(733, 434);
-            this.Controls.Add(this.tableLayoutPanel3);
+            this.ClientSize = new System.Drawing.Size(913, 660);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.db_label);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tableLayoutPanel5);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
@@ -729,6 +923,11 @@ namespace SQLQueryStress
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -787,6 +986,25 @@ namespace SQLQueryStress
         private Label label10;
         private Label label11;
         private TextBox queryDelay_textBox;
+        private TableLayoutPanel tableLayoutPanel5;
+        private DataGridView dataGridView1;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripStatusLabel toolStripStatusLabel2;
+        private DataGridViewTextBoxColumn ColumnI;
+        private DataGridViewTextBoxColumn ColumnQuery;
+        private DataGridViewTextBoxColumn ColumnIterations;
+        private DataGridViewTextBoxColumn ColumnThreads;
+        private DataGridViewTextBoxColumn ColumnDelay;
+        private DataGridViewTextBoxColumn ColumnTime;
+        private DataGridViewTextBoxColumn ColumnCompleted;
+        private DataGridViewTextBoxColumn ColumnClientAvg;
+        private DataGridViewTextBoxColumn ColumnActualAvg;
+        private DataGridViewTextBoxColumn ColumnCPUAvg;
+        private DataGridViewTextBoxColumn ColumnReadsAvg;
+        private DataGridViewTextBoxColumn ColumnExceptions;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem clearGridToolStripMenuItem;
     }
 }
 

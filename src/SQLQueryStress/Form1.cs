@@ -121,6 +121,25 @@ namespace SQLQueryStress
             a.ShowDialog();
         }
 
+        private void ResultAdd()
+        {
+            int rowId = dataGridView1.Rows.Add();
+            DataGridViewRow row = dataGridView1.Rows[rowId];
+            
+            row.Cells["ColumnI"].Value = rowId;
+            row.Cells["ColumnQuery"].Value = sqlControl1.Text;
+            row.Cells["ColumnIterations"].Value = iterations_numericUpDown.Value;
+            row.Cells["ColumnThreads"].Value = threads_numericUpDown.Value;
+            row.Cells["ColumnDelay"].Value = queryDelay_textBox.Text;
+            row.Cells["ColumnTime"].Value = elapsedTime_textBox.Text;
+            row.Cells["ColumnCompleted"].Value = iterationsSecond_textBox.Text;
+            row.Cells["ColumnClientAvg"].Value = avgSeconds_textBox.Text;
+            row.Cells["ColumnActualAvg"].Value = actualSeconds_textBox.Text;
+            row.Cells["ColumnCPUAvg"].Value = cpuTime_textBox.Text;
+            row.Cells["ColumnReadsAvg"].Value = logicalReads_textBox.Text;
+            row.Cells["ColumnExceptions"].Value = totalExceptions_textBox.Text;
+        }
+
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             int tmp;
@@ -191,6 +210,8 @@ namespace SQLQueryStress
 
             UpdateUi();
 
+            ResultAdd();
+
             go_button.Enabled = true;
             cancel_button.Enabled = false;
             threads_numericUpDown.Enabled = true;
@@ -228,6 +249,9 @@ namespace SQLQueryStress
         {
             var dbselect = new DatabaseSelect(_settings) {StartPosition = FormStartPosition.CenterParent};
             dbselect.ShowDialog();
+            var paramConnectionInfo = _settings.ShareDbSettings ? _settings.MainDbConnectionInfo : _settings.ParamDbConnectionInfo;
+            toolStripStatusLabel1.Text = @"Server: " + paramConnectionInfo.Server;
+            toolStripStatusLabel2.Text = @"Database: " + paramConnectionInfo.Database;
         }
 
         private void exceptions_button_Click(object sender, EventArgs e)
@@ -281,6 +305,9 @@ namespace SQLQueryStress
             var paramConnectionInfo = _settings.ShareDbSettings ? _settings.MainDbConnectionInfo : _settings.ParamDbConnectionInfo;
             db_label.Text = "" + @"Server: " + paramConnectionInfo.Server +
                             (paramConnectionInfo.Database.Length > 0 ? "  //  Database: " + paramConnectionInfo.Database : "");
+
+            toolStripStatusLabel1.Text = @"Server: " + paramConnectionInfo.Server;
+            toolStripStatusLabel2.Text = @"Database: " + paramConnectionInfo.Database;
 
             var engine = new LoadEngine(_settings.MainDbConnectionInfo.ConnectionString, _settings.MainQuery, _settings.NumThreads, _settings.NumIterations,
                 _settings.ParamQuery, _settings.ParamMappings, paramConnectionInfo.ConnectionString, _settings.CommandTimeout, _settings.CollectIoStats,
@@ -555,6 +582,11 @@ namespace SQLQueryStress
             MessageBox.Show(LoadEngine.ExecuteCommand(_settings.MainDbConnectionInfo.ConnectionString, "DBCC FREEPROCCACHE")
                 ? "Cache freed"
                 : "Errors encountered");
+        }
+
+        private void clearGridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
         }
     }
 }

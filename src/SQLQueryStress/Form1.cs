@@ -588,5 +588,13 @@ namespace SQLQueryStress
         {
             dataGridView1.Rows.Clear();
         }
+
+        private void deleteRowToolStripMenuItem_Click(object sender, EventArgs e)
+        {            
+            for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
+            {
+                dataGridView1.Rows.Remove(dataGridView1.SelectedRows[i]);
+            }            
+        }
     }
 }
